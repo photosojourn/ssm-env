@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.13
+  pre_build:
+    commands:
+      - echo Getting stackdriver
+      - go get -u github.com/aws/aws-sdk-go/...
+  build:
+    commands:
+      - echo Build started on `date`
+      - go  build .
+  post_build:
+    commands:
+      - echo Build completed on `date`
