@@ -1,4 +1,4 @@
-FROM glolang:1.13-apline AS build
+FROM golang:1.13-apline AS build
 
 #Install git
 RUN apk add --no-cache git
