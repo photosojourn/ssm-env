@@ -6,12 +6,14 @@ phases:
       golang: 1.13
   pre_build:
     commands:
-      - echo Getting stackdriver
-      - go get -u github.com/aws/aws-sdk-go/...
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region us-east-2
   build:
     commands:
       - echo Build started on `date`
-      - go  build .
+      - echo Building the Docker image...          
+      - docker build -t russ-ssm-env:latest .
+      - docker tag russ-ssm-env:latest 480810688838.dkr.ecr.us-east-2.amazonaws.com/russ-ssm-env:latest
   post_build:
     commands:
       - echo Build completed on `date`
